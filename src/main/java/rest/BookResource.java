@@ -9,21 +9,25 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.slf4j.Logger;
+
 import data.BookRepository;
-import lombok.extern.slf4j.Slf4j;
 import model.Book;
 
 @Path("/books")
-@Slf4j
 public class BookResource {
 
 	@Inject
 	private BookRepository repository;
 	
+	@Inject
+	private Logger logger;
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response listUsers(){
 		List<Book> result = repository.query();
+		logger.info("Got full list of users");
 		return Response.ok(result).build();
 	}
 }

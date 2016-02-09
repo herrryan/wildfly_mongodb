@@ -1,9 +1,23 @@
 package model;
 
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Id;
+
 import lombok.Data;
 
 @Data
-public class Book {
+@Entity
+public class Book implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	private ObjectId id;
+	
 	String title;
 	String author;
 	String type;
